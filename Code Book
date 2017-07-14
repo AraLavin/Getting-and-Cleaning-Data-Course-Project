@@ -1,0 +1,60 @@
+# Code Book
+
+This file describes the variables, the data, and any transformations or work performed to clean up the data 
+provided in the assigment
+
+## About the Data Set:
+
+The data set was obtined from:
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S 
+smartphone. A full description is available at the site where the data was obtained.
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+Input Files
+
+- 'features.txt': List of all features.
+- 'activity_labels.txt': Links the class labels with their activity name.
+- 'X_train.txt': Gruop of variable features used as training set. 
+- 'y_train.txt': Training labels corresponding to *X_train.txt*. 
+- 'test/X_test.txt': Gruop of variable features used as Test set. 
+- 'test/y_test.txt': Training labels corresponding to *X_test.txt*. 
+- 'subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+- 'subject_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+
+ ##Transformations or work permormed to clean up the data
+
+Loads of inputs
+- 'features.txt' loaded in r as: feature_names
+- 'activity_labels.txt' loaded in r as: activity_labels
+- 'X_train.txt' loaded in r as: train_set
+- 'y_train.txt' loaded in r as: train_labels
+- 'test/X_test.txt' loaded in r as:test_set
+- 'test/y_test.txt' loaded in r as:test_labels
+- 'subject_train.txt' loaded in r as: train_subject
+- 'subject_test.txt' loaded in r as:test_subject
+
+Merges of test and train tables
+The merge of train_subject and test_subject result in 'subjects' data table 
+The merge of train_labels and test_labels result in 'activities' data table 
+The merge of train_set and test_set result in 'features' data table 
+
+Rename the columns
+Rename all the columns of 'features' with the values in column 2 of 'features_names' 
+Rename the one column of activities as 'Activity'
+Rename the one column of subjects as 'subject'
+  
+'whole_dataset' is created as merge features, activities and subjects in   
+'extracted_data' is created with the columns of whole_dataset that contains mean and std + Activity and subject columns
+'extracted_data' column 'Activity' is updated to contain the description in 'activity_labels'
+
+Rename 'extracted_data' columns 
+The acronyms in variable names, like 'Acc', 'Gyro', 'Mag', 't' and 'f' are replaced with descriptive labels such as 
+'Accelerometer', 'Gyroscpoe', 'Magnitude', 'Time' and 'Frequency'.
+
+'tidy_data' created with mean for each activity and subject in 'extracted_data'
+
+Ouput File
+Tidy.txt is created from export 'tidy_data' in a text file.
+
